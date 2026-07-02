@@ -11,7 +11,7 @@ metadata:
 ## Procedure
 
 1. Read resolved playbook input `recipient` (default `World`)
-2. Run `scripts/run.py` with `--recipient`, `--datastore`, and `--workspace` bound to the active run subdirectory under `{agentWorkspace}` (see APP `app-execution.md` workspace layout)
+2. Run `scripts/run.py` with `--recipient`, `--datastore`, and `--workspace` pointing at the active ephemeral workspace for this run (see APP `app-execution.md`)
 3. Read `greeting.txt` and `skill-result.json` from the workspace run directory; use `skill-result.json` to verify `recipient` and `greeting` before report assembly
 4. Use the greeting text as the core **Greeting** section in `Report.md` (report assembly is agent responsibility)
 
@@ -29,7 +29,7 @@ python scripts/run.py --recipient "$RECIPIENT" --datastore "$USER_DATASTORE" --w
 python scripts/run.py --recipient $env:RECIPIENT --datastore $env:USER_DATASTORE --workspace $env:AGENT_WORKSPACE
 ```
 
-Pass `--workspace` as the platform's per-run subdirectory when available (`runs/<timestamp>-HelloWorld/`). Pass `--datastore` as the bound `{userDatastore}` even when the script does not read it.
+Pass `--workspace` as the active ephemeral directory for this run (execution agent chooses when `{agentWorkspace}` is not supplied). Pass `--datastore` as the bound `{userDatastore}` even when the script does not read it.
 
 ## References
 
